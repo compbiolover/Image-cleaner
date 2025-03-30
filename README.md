@@ -42,7 +42,7 @@ python main.py input.png
 python main.py ./screenshots
 
 # Process with 10px padding around UI elements
-python main.py input.png --padding 10
+python main.py input.png --padding 200
 
 # Process as data visualization with enhanced quality
 python main.py plot.png --type viz
@@ -82,8 +82,8 @@ To test how processed images look in a documentation context, create a sample ma
 mkdir -p test_docs/images
 
 # Process example images
-python main.py path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 20
-python main.py path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 20
+python main.py path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 200
+python main.py path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 200
 
 # Create test markdown
 touch test_docs/sample_documentation.md
