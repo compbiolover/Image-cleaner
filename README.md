@@ -23,8 +23,8 @@ Perfect for teams working on documentation where screenshots come from multiple 
 
 ```bash
 # Create a virtual environment (optional but recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python -m venv your-venv
+source your-venv/bin/activate  # On Windows: your-venv\Scripts\activate
 
 # Install required dependency
 pip install Pillow
@@ -48,7 +48,7 @@ python main.py input.png --padding 10
 python main.py plot.png --type viz
 
 # Process at large size with high DPI
-python main.py input.png --size large --dpi 200
+python main.py input.png --size large --dpi 600
 
 # Force overwrite existing files
 python main.py input.png --force
