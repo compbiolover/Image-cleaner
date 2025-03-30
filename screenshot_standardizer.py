@@ -33,6 +33,9 @@ Examples:
   
   # Process at large size with high DPI
   python screenshot_standardizer.py input.png --size large --dpi 200
+  
+  # Force overwrite existing files
+  python screenshot_standardizer.py input.png --force
         """
     )
     
@@ -50,6 +53,8 @@ Examples:
                         help="Set DPI for output images (default: 144)")
     parser.add_argument("--no-border", action="store_true",
                         help="Disable borders on processed images")
+    parser.add_argument("--force", "-f", action="store_true",
+                        help="Force overwrite existing files")
     
     args = parser.parse_args()
     
@@ -77,6 +82,11 @@ Examples:
     
     # Function to process a single image
     def process_image(img_path, out_path):
+        # Check if file exists and force flag is not set
+        if out_path.exists() and not args.force:
+            print(f"Error: File {out_path} already exists. Use --force to overwrite.")
+            return False
+            
         # Open and process image
         with Image.open(img_path) as img:
             # Add padding if requested
@@ -134,6 +144,7 @@ Examples:
             img.save(out_path, format=output_format.upper(), dpi=dpi, **save_options)
             
             print(f"Processed: {img_path.name} → {out_path.name}")
+            return True
     
     # Process directory or single file
     if input_path.is_dir():
@@ -143,16 +154,25 @@ Examples:
                 if f.is_file() and f.suffix.lower() in image_extensions]
         
         # Process each file
+        processed_count = 0
+        skipped_count = 0
+        
         for file in files:
             output_name = f"{file.stem}_{args.size}.{output_format}"
             output_path = output_dir / output_name
             
             try:
-                process_image(file, output_path)
+                if process_image(file, output_path):
+                    processed_count += 1
+                else:
+                    skipped_count += 1
             except Exception as e:
                 print(f"Error processing {file.name}: {e}")
+                skipped_count += 1
                 
-        print(f"Processed {len(files)} images")
+        print(f"Processed {processed_count} of {len(files)} images")
+        if skipped_count > 0:
+            print(f"Skipped {skipped_count} files. Use --force to overwrite existing files.")
         
     else:
         # Process single file
@@ -165,6 +185,11 @@ Examples:
         # Create output directory if needed
         output_path.parent.mkdir(parents=True, exist_ok=True)
         
+        # Check if file exists and force flag is not set
+        if output_path.exists() and not args.force:
+            print(f"Error: File {output_path} already exists. Use --force to overwrite.")
+            sys.exit(1)
+            
         try:
             process_image(input_path, output_path)
         except Exception as e:
