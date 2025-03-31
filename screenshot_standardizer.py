@@ -56,7 +56,7 @@ Examples:
                         help="Screenshot type (default or viz for data visualizations)")
     parser.add_argument("--padding", "-p", type=int, default=0,
                         help="Add consistent padding around elements (in pixels)")
-    parser.add_argument("--dpi", 
+    parser.add_argument("--dpi", "-dp",
                         type=int, default=144,
                         help="Set DPI for output images (default: 144)")
     parser.add_argument("--no-border", action="store_true",

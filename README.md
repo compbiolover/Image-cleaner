@@ -74,10 +74,10 @@ python main.py --input input.png --verbose
 - `--size`, `-s`: Choose preset sizes: small (1024px), medium (1440px), or large (1920px)
 - `--type`, `-t`: Processing type: default or viz (optimized for data visualizations)
 - `--padding`, `-p`: Add consistent padding around elements (in pixels)
-- `--dpi`, `-d`: Set DPI for output images (default: 144)
+- `--dpi`, `-dp`: Set DPI for output images (default: 144)
 - `--no-border`: Disable borders on processed images
 - `--force`, `-f`: Force overwrite existing files
-- `--format`: Output image format: png, jpg/jpeg, or webp (default: png)
+- `--format`, `-fm`: Output image format: png, jpg/jpeg, or webp (default: png)
 - `--verbose`, `-v`: Print detailed processing information
 
 ## Why Use This Tool?
