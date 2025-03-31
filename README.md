@@ -24,7 +24,7 @@ Perfect for teams working on documentation where screenshots come from multiple 
 ```bash
 # Create a virtual environment (optional but recommended)
 python -m venv your-venv
-source your-venv/bin/activate  # On Windows: your-venv\Scripts\activate
+source your-venv/bin/activate # On Windows: your-venv\Scripts\activate
 
 # Install required dependency
 pip install Pillow
@@ -36,32 +36,49 @@ pip install Pillow
 
 ```bash
 # Process a single file
-python main.py input.png
+python main.py --input input.png
 
 # Process a directory of images
-python main.py ./screenshots
+python main.py --input ./screenshots
 
 # Process with 10px padding around UI elements
-python main.py input.png --padding 200
+python main.py --input input.png --padding 200
 
 # Process as data visualization with enhanced quality
-python main.py plot.png --type viz
+python main.py --input plot.png --type viz
 
 # Process at large size with high DPI
-python main.py input.png --size large --dpi 600
+python main.py --input input.png --size large --dpi 600
 
 # Force overwrite existing files
-python main.py input.png --force
+python main.py --input input.png --force
+
+# Save to a specific output directory 
+python main.py --input input.png --outdir ~/Desktop/processed_images
+
+# Use a different image format
+python main.py --input input.png --format jpg
+
+# Specify a custom output file (single file mode only)
+python main.py --input input.png --output ~/Desktop/processed_image.png
+
+# Enable verbose mode for detailed processing information
+python main.py --input input.png --verbose
 ```
 
 ### Command Line Options
 
+- `--input`, `-i`: Input file or directory (required)
+- `--output`, `-o`: Output file path (for single file processing only)
+- `--outdir`, `-d`: Output directory for processed images (default: processed-screenshots)
 - `--size`, `-s`: Choose preset sizes: small (1024px), medium (1440px), or large (1920px)
 - `--type`, `-t`: Processing type: default or viz (optimized for data visualizations)
 - `--padding`, `-p`: Add consistent padding around elements (in pixels)
 - `--dpi`, `-d`: Set DPI for output images (default: 144)
 - `--no-border`: Disable borders on processed images
 - `--force`, `-f`: Force overwrite existing files
+- `--format`: Output image format: png, jpg/jpeg, or webp (default: png)
+- `--verbose`, `-v`: Print detailed processing information
 
 ## Why Use This Tool?
 
@@ -82,8 +99,8 @@ To test how processed images look in a documentation context, create a sample ma
 mkdir -p test_docs/images
 
 # Process example images
-python main.py path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 200
-python main.py path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 200
+python main.py --input path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 200
+python main.py --input path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 200
 
 # Create test markdown
 touch test_docs/sample_documentation.md
