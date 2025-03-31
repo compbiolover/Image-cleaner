@@ -36,34 +36,34 @@ pip install Pillow
 
 ```bash
 # Process a single file
-python main.py --input input.png
+python screenshot_standardizer.py --input input.png
 
 # Process a directory of images
-python main.py --input ./screenshots
+python screenshot_standardizer.py --input ./screenshots
 
-# Process with 10px padding around UI elements
-python main.py --input input.png --padding 200
+# Process with 200px padding around UI elements
+python screenshot_standardizer.py --input input.png --padding 200
 
 # Process as data visualization with enhanced quality
-python main.py --input plot.png --type viz
+python screenshot_standardizer.py --input plot.png --type viz
 
 # Process at large size with high DPI
-python main.py --input input.png --size large --dpi 600
+python screenshot_standardizer.py --input input.png --size large --dpi 600
 
 # Force overwrite existing files
-python main.py --input input.png --force
+python screenshot_standardizer.py --input input.png --force
 
 # Save to a specific output directory 
-python main.py --input input.png --outdir ~/Desktop/processed_images
+python screenshot_standardizer.py --input input.png --outdir ~/Desktop/processed_images
 
 # Use a different image format
-python main.py --input input.png --format jpg
+python screenshot_standardizer.py --input input.png --format jpg
 
 # Specify a custom output file (single file mode only)
-python main.py --input input.png --output ~/Desktop/processed_image.png
+python screenshot_standardizer.py --input input.png --output ~/Desktop/processed_image.png
 
 # Enable verbose mode for detailed processing information
-python main.py --input input.png --verbose
+python screenshot_standardizer.py --input input.png --verbose
 ```
 
 ### Command Line Options
@@ -99,8 +99,8 @@ To test how processed images look in a documentation context, create a sample ma
 mkdir -p test_docs/images
 
 # Process example images
-python main.py --input path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 200
-python main.py --input path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 200
+python screenshot_standardizer.py --input path/to/umap_image.png --output test_docs/images/umap_processed.png --type viz --padding 200
+python screenshot_standardizer.py --input path/to/color_picker.png --output test_docs/images/colorpicker_processed.png --padding 200
 
 # Create test markdown
 touch test_docs/sample_documentation.md
